@@ -1,20 +1,34 @@
 const Discord = require('discord.js')
 const fs = require("fs")
 const client = new Discord.Client({ intents: Object.keys(Discord.GatewayIntentBits), partials: [Discord.Partials.Channel] })
+const readline = require('readline').createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
+
 require('dotenv').config()
 
-client.on("ready", () => {
+
+client.on("ready", async () => {
     console.log("connecté en tant que " + client.user.username + "#" + client.user.discriminator) //message de démarrage du bot
-    client.user.setPresence({
+    await client.user.setPresence({
         activities : [{name: "Kill Microsoft"}],
         status: "idle"
     });
 });
 client.login(process.env.TOKEN).then(r => "Error")
-
+try{
+    console.log(fs.readFileSync("webhook.txt", "utf-8").replace(" ", ""))
+}catch{
+    readline.question('Quel est l\'id du salon ? >>>', id => {
+        console.log(`${id}`);
+        fs.writeFileSync("webhook.txt", id, "utf-8")
+    readline.close();
+});
+}
 client.on("messageCreate",  async message =>{
     if(message.content.toLowerCase().includes("window") || message.content.toLowerCase().includes("microsoft")){
-        const chan =  message.guild.channels.cache.get(fs.readFileSync("webhook.txt", "utf-8"));
+        const chan =  message.guild.channels.cache.get(fs.readFileSync("webhook.txt", "utf-8").replace(" ", ""));
         let webhooks = await chan.fetchWebhooks();
         let webhook = webhooks.find(wh => wh.token)
         let msg = message.content
