@@ -8,10 +8,6 @@ Puis déplacez vous dans le dossier
 ``` bash
 cd linuxenjoyerdiscordbot
 ```
-Créez un fichier webhook.txt et collez y l'id du salon de votre webhook precedement créé
-``` bash
-nano webhook.txt
-```
 Créez un fichier .env où vous stockerez le token sous la forme TOKEN="your token"
 ``` bash
 nano .env
@@ -24,3 +20,4 @@ Lancez l'application grâce à node.js
 ``` bash
 node index.js
 ```
+Il vous sera demandé la premiere fois d'inscrire l'id du salon actuel de votre webhook dans la console.
