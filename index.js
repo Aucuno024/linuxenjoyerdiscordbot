@@ -33,11 +33,11 @@ client.on("messageCreate",  async message =>{
         let webhook = webhooks.find(wh => wh.token)
         let msg = message.content
         console.log("Etape 1")
-	if(message.channel.id !== webhook.channel.id){
- 	       await webhook.edit({
-        	    channel: message.channel
-       		 })
-	}
+    if(message.channel.id !== webhook.channel.id){
+        await webhook.edit({
+        channel: message.channel
+        })
+    }
         console.log("Etape 2")
         msg = msg.replaceAll("Microsoft", "Meinkrosauft")
         msg = msg.replaceAll("microsoft", "meinkrosauft")
