@@ -16,6 +16,10 @@ Créez un fichier .env où vous stockerez le token sous la forme TOKEN="your tok
 ``` bash
 nano .env
 ```
+Installez les dépendances 
+```bash
+npm install
+```
 Lancez l'application grâce à node.js
 ``` bash
 node index.js
