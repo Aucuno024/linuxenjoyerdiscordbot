@@ -2,10 +2,6 @@ const Discord = require('discord.js')
 const fs = require("fs")
 const path = require('path')
 const client = new Discord.Client({ intents: Object.keys(Discord.GatewayIntentBits), partials: [Discord.Partials.Channel] })
-const readline = require('readline').createInterface({
-    input: process.stdin,
-    output: process.stdout
-});
 
 require('dotenv').config()
 
@@ -24,7 +20,6 @@ client.on("ready", async () => {
  * @param {fs.Dirent[]} pipelines 
  */
 function initPipelines(pipelines) {
-    let arrayCount = []
     for (const pipeline of pipelines) {
         console.log("Loading pipeline " + pipeline.name + "...")
         const pipelineDir = path.join("pipelines", pipeline.name)
@@ -70,4 +65,4 @@ fs.readdir("pipelines", {withFileTypes: true}, (err, files) => {
 })
 
 
-client.login(process.env.TOKEN).then(r => console.log("login"))
+client.login(process.env.TOKEN).then(r => console.log(r))
