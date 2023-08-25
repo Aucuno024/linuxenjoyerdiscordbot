@@ -18,46 +18,13 @@ client.on("ready", async () => {
     });
 });
 
-try {
-    console.log(fs.readFileSync("webhook.txt", "utf-8").replace(" ", ""))
-} catch {
-    readline.question('Quel est l\'id du salon ? >>>', id => {
-        console.log(`${id}`);
-        fs.writeFileSync("webhook.txt", id, "utf-8")
-    readline.close();
-});
-}
-
-client.on("messageCreate",  async message => {
-    if(message.content.toLowerCase().includes("window") || message.content.toLowerCase().includes("microsoft")) {
-        const chan =  message.guild.channels.cache.get(fs.readFileSync("webhook.txt", "utf-8").replace(" ", ""));
-        let webhooks = await chan.fetchWebhooks();
-        let webhook = webhooks.find(wh => wh.token)
-        let msg = message.content
-        console.log("Etape 1")
-        if(message.channel.id !== webhook.channel.id) {
-            await webhook.edit({
-                channel: message.channel
-            })
-        }
-        console.log("Etape 2")
-        msg = msg.replaceAll("Microsoft", "Meinkrosauft")
-        msg = msg.replaceAll("microsoft", "meinkrosauft")
-        msg = msg.replaceAll("window", "windaube")
-        msg = msg.replaceAll("Window", "Windaube")
-        console.log("Etape 3")
-        message.delete()
-        webhook.send({content: msg, username: message.author.username, avatarURL: message.author.avatarURL()})
-        fs.writeFileSync("webhook.txt", `${message.channel.id}`,"utf-8")
-        return console.log("done")
-    }
-})
 
 /**
  * 
  * @param {fs.Dirent[]} pipelines 
  */
 function initPipelines(pipelines) {
+    let arrayCount = []
     for (const pipeline of pipelines) {
         console.log("Loading pipeline " + pipeline.name + "...")
         const pipelineDir = path.join("pipelines", pipeline.name)
@@ -68,17 +35,19 @@ function initPipelines(pipelines) {
             if (stageNames.length === 0) continue
             stageNames.sort((a, b) => parseInt(a.split("-")[0]) - parseInt(b.split("-")[0]))
             const stages = stageNames.map(name => require(path.resolve( process.cwd(), pipelineDir, name))).filter(stage => stage.enabled)
-            let i = 0;
-
+            let i = 0
             function next(...args) {
                 const stage = stages[++i]
                 if (stage != null && typeof stage.accept === "function") return stage.accept(next, ...args)
                 console.log("pipeline " + pipeline.name + " reached the end !")
+                i = 0
             }
 
             if (pipelineConfig.type === "messageCreate" && pipelineConfig.settings.channels === "all") {
                 client.on("messageCreate", (message) => {
-                    stages[0].accept(next, message)
+                    if(!message.author.bot){
+                        stages[0].accept(next, message)
+                    }
                 })
             }
             console.log("Pipeline " + pipeline.name + " successfully loaded.")
@@ -101,4 +70,4 @@ fs.readdir("pipelines", {withFileTypes: true}, (err, files) => {
 })
 
 
-client.login(process.env.TOKEN)
+client.login(process.env.TOKEN).then(r => console.log("login"))

@@ -1,7 +1,0 @@
-{
-    "type": "messageCreate",
-    "enabled": true,
-    "settings": {
-        "channels": "all"
-    }
-}
