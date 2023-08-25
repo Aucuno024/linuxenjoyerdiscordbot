@@ -18,7 +18,7 @@ npm install
 ```
 Ouvrez la configuration de la pipeline et changez webhookChannel par l'id du salon actuel de votre webhook
 ```bash
-nano /pipelines/linuxenjoyer/pipeline.json
+nano pipelines/linuxenjoyer/pipeline.json 
 ```
 Lancez l'application grâce à node.js
 ``` bash
