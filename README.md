@@ -1,6 +1,6 @@
 # Linux enjoyer Discord Bot
 
-Il vous faudra creer un webhook dans le salon puis effectuer les commandes suivantes
+Il vous faudra creer un webhook dans le salon discord quelconque puis effectuer les commandes suivantes :
 ``` bash
 git clone https://github.com/Aucuno024/linuxenjoyerdiscordbot.git
 ```
@@ -16,8 +16,11 @@ Installez les dépendances
 ```bash
 npm install
 ```
+Ouvrez la configuration de la pipeline et changez webhookChannel par l'id du salon actuel de votre webhook
+```bash
+nano pipelines/linuxenjoyer/pipeline.json 
+```
 Lancez l'application grâce à node.js
 ``` bash
 node index.js
 ```
-Il vous sera demandé la premiere fois d'inscrire l'id du salon actuel de votre webhook dans la console.
