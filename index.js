@@ -65,4 +65,4 @@ fs.readdir("pipelines", {withFileTypes: true}, (err, files) => {
 })
 
 
-client.login(process.env.TOKEN).then(r => console.log(r))
+client.login(process.env.TOKEN)
