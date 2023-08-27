@@ -1,5 +1,7 @@
 # Linux enjoyer Discord Bot
 
+Il s'ajit d'un bot discord réécrivant vos messages contenants, par défaut, microsoft, windows, bethesda et elon musk.
+
 Il vous faudra creer un webhook dans le salon discord quelconque puis effectuer les commandes suivantes :
 ``` bash
 git clone https://github.com/Aucuno024/linuxenjoyerdiscordbot.git
