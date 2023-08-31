@@ -2,9 +2,9 @@ const fs = require("fs")
 
 module.exports.enabled = true
 
-module.exports.accept = async (next, message, testingValue) => {
+module.exports.accept = async (message, testingValue) => {
     if (message.content !== testingValue) {
-        let channelId = JSON.parse(fs.readFileSync("pipelines/linuxenjoyer/pipeline.json")).settings.webhookChannel
+        let channelId = JSON.parse(fs.readFileSync("pipelines/linuxenjoyer/config.json")).settings.webhookChannel
         if (channelId !== null) {
             const chan = message.guild.channels.cache.get(channelId)
             let webhooks = await chan.fetchWebhooks();
@@ -20,11 +20,10 @@ module.exports.accept = async (next, message, testingValue) => {
                 username: message.author.username,
                 avatarURL: message.author.avatarURL()
             })
-            let pipeline = JSON.parse(fs.readFileSync("pipelines/linuxenjoyer/pipeline.json"))
+            let pipeline = JSON.parse(fs.readFileSync("pipelines/linuxenjoyer/config.json"))
             pipeline.settings.webhookChannel = webhook.channel.id
-            pipeline.number = 0
-            fs.writeFileSync("pipelines/linuxenjoyer/pipeline.json", JSON.stringify(pipeline))
+            fs.writeFileSync("pipelines/linuxenjoyer/config.json", JSON.stringify(pipeline))
         }
     }
-    next()
+    return "end"
 }

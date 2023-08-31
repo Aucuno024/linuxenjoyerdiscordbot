@@ -1,11 +1,11 @@
 module.exports.enabled = true
 
-module.exports.accept = (next, message, msg) => {
+module.exports.accept = (message, msg) => {
     if(message.content.toLowerCase().includes("microsoft")){
         let msg = message.content.replaceAll("Microsoft", "Meincrosauft")
         msg = msg.replaceAll("microsoft", "meincrosauft")
-        next(message, msg)
+        return [message, msg]
     }else{
-        next(message, msg)
+        return [message, msg]
     }
 }
