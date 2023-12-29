@@ -22,12 +22,17 @@ module.exports.accept = async (message, testingValue) => {
             })
         }
 
-        message.delete()
-        await webhook.send({
-            content: testingValue,
-            username: message.member.displayName ?? message.author.username,
-            avatarURL: message.member.displayAvatarURL() ?? message.author.avatarURL()
-        })   
+        try {
+            message.delete()
+            await webhook.send({
+                content: testingValue,
+                username: message.member.displayName ?? message.author.username,
+                avatarURL: message.member.displayAvatarURL() ?? message.author.avatarURL()
+            })   
+        } catch (error) {
+            console.warn("The message is already deleted. Ignoring.")
+            console.debug(error)
+        }
     }
     return "end"
 }
