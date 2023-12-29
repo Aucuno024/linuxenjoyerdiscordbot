@@ -15,7 +15,6 @@ function helloTask() {
     for (const tuple of guildChannelCache) {
         const gif = gifList[crypto.randomInt(gifList.length)]
         const channel = bot.channels.cache.get(tuple[1])
-        console.log(channel)
         if(channel){
             channel.send(gif)
         }
