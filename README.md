@@ -2,7 +2,7 @@
 
 Il s'agit d'un bot discord réécrivant vos messages contenants, par défaut, microsoft, windows, bethesda et elon musk.
 
-POur l'installation veuillez suivres les commandes suivantes :
+Pour l'installation veuillez suivres les commandes suivantes :
 ``` bash
 git clone https://github.com/Aucuno024/linuxenjoyerdiscordbot.git
 ```
