@@ -1,8 +1,8 @@
 module.exports.enabled = true
 
 module.exports.accept = (message, msg) => {
-    if(message.content.toLowerCase().includes("bethesda") || message.content.toLowerCase().includes("betesda")){
-        let msg = message.content.replaceAll("Bethesda", "Bugthesda")
+    if(msg.toLowerCase().includes("bethesda") || msg.toLowerCase().includes("betesda")){
+        msg = msg.replaceAll("Bethesda", "Bugthesda")
         msg = msg.replaceAll("bethesda", "bugthesda")
         msg = msg.replaceAll("betesda", "bugthesda")
         msg = msg.replaceAll("Betesda", "Bugthesda")

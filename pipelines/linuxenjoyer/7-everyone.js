@@ -1,4 +1,4 @@
-const PermissionFlagsBits = require("discord.js");
+const { PermissionFlagsBits } = require("discord.js");
 module.exports.enabled = true
 
 module.exports.accept = (message, msg) => {

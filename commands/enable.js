@@ -4,10 +4,10 @@
 
 
 /*const fs = require('fs')
-const PermissionFlagsBits = require("discord.js");
+const { PermissionFlagsBits } = require("discord.js");
 module.exports = {
     exec: (message, data) =>{
-        if(!message.member.permissions.has(PermissionFlagsBits.GuildManager)) return message.reply("Vous n'avez pas " +
+        if(!message.member.permissions.has(PermissionFlagsBits.ManageGuild)) return message.reply("Vous n'avez pas " +
             "la permission")
         if(data.args.length < 2) return message.reply("Vous n'avez pas ajouté de noms de modules (hello/censor")
         if(data.args[1] !== "hello" && data.args[1] !== "censure") return message.reply("Nom de module invalide")
