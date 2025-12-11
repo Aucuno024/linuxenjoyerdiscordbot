@@ -1,7 +1,15 @@
-const Discord = require('discord.js')
+const { Client, GatewayIntentBits, Partials, ActivityType } = require('discord.js')
 const fs = require("fs")
 const {loadPipeline, registerPipelineType } = require('pipelinenodejs')
-const client = new Discord.Client({ intents: Object.keys(Discord.GatewayIntentBits), partials: [Discord.Partials.Channel] })
+const client = new Client({ 
+    intents: [
+        GatewayIntentBits.Guilds,
+        GatewayIntentBits.GuildMessages,
+        GatewayIntentBits.MessageContent,
+        GatewayIntentBits.GuildMembers
+    ], 
+    partials: [Partials.Channel] 
+})
 const prefix = "&"
 const { launchHelloTask } = require("./dailyHello");
 let commands = {}
@@ -11,9 +19,9 @@ require('dotenv').config()
 client.login(process.env.TOKEN).then(r => console.log("It's okay"))
 
 client.on("ready", async () => {
-    console.log("connecté en tant que " + client.user.username + "#" + client.user.discriminator) //message de démarrage du bot
+    console.log("connecté en tant que " + client.user.displayName) //message de démarrage du bot
     client.user.setPresence({
-        activities : [{name: "Kill Microsoft"}],
+        activities : [{name: "Kill Microsoft", type: ActivityType.Playing}],
         status: "idle"
     });
     launchHelloTask(client)
@@ -43,7 +51,7 @@ client.on("messageCreate", (message) => {
     let cmd = args[0].slice(prefix.length).toLowerCase()
     let code = commands[cmd]
     if (code != null) {
-        code.exec(message, {client: client, args: args, Discord: Discord, prefix:prefix})
+        code.exec(message, {client: client, args: args, prefix:prefix})
     }
 });
 

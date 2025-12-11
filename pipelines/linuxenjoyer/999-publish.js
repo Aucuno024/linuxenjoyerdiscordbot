@@ -24,8 +24,8 @@ module.exports.accept = async (message, testingValue) => {
         try {
             await webhook.send({
                 content: testingValue,
-                username: message.member.displayName ?? message.author.username,
-                avatarURL: message.member.displayAvatarURL() ?? message.author.avatarURL()
+                username: message.member?.displayName ?? message.author.displayName ?? message.author.username,
+                avatarURL: message.member?.displayAvatarURL() ?? message.author.displayAvatarURL()
             })
             await message.delete()
         } catch (error) {
