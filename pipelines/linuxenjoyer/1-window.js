@@ -1,8 +1,8 @@
 module.exports.enabled = true
 
 module.exports.accept = (message) => {
-        let msg = message.content.replaceAll("Window", "Windaube")
-        msg = msg.replaceAll("window", "windaube")
-        msg = msg.replaceAll("WINDOW", "WINDAUBE")
+        let msg = message.content.replaceAll("Window", "Winslop")
+        msg = msg.replaceAll("window", "winslop")
+        msg = msg.replaceAll("WINDOW", "WINSLOP")
         return [message, msg]
 }
