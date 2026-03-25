@@ -1,8 +1,8 @@
 module.exports.enabled = true
 
 module.exports.accept = (message, msg) => {
-    let msgReplaced = msg.replaceAll("Microsoft", "Meincrosauft")
-    msgReplaced = msgReplaced.replaceAll("microsoft", "meincrosauft")
-    msgReplaced= msgReplaced.replaceAll("MICROSOFT", "MEINCROSAUFT")
+    let msgReplaced = msg.replaceAll("Microsoft", "Microslop")
+    msgReplaced = msgReplaced.replaceAll("microsoft", "microslop")
+    msgReplaced= msgReplaced.replaceAll("MICROSOFT", "Microslop")
     return [message, msgReplaced]
 }
